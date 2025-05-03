@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://dpj3o3wod6hbh"]
+
+[ext_resource type="Script" uid="uid://pht8pgeg44x8" path="res://car.gd" id="1_jjgbg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jjgbg"]
+size = Vector2(500, 10)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo1nx"]
+albedo_color = Color(0, 0, 0, 1)
+
+[node name="Main" type="Node3D"]
+
+[node name="Car" type="CharacterBody3D" parent="."]
+script = ExtResource("1_jjgbg")
+speed = null
+rotation_speed = null
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Car"]
+shape = SubResource("BoxShape3D_0xm2m")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Car"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2, 0)
+mesh = SubResource("BoxMesh_h2yge")
+
+[node name="Camera3D" type="Camera3D" parent="Car"]
+transform = Transform3D(-0.999706, 0.0242145, -0.00118266, 0.0215694, 0.910655, 0.412604, 0.011068, 0.412457, -0.91091, -1.49152, 7.69037, -9.88893)
+
+[node name="Track" type="StaticBody3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Track"]
+mesh = SubResource("PlaneMesh_jjgbg")
+surface_material_override/0 = SubResource("StandardMaterial3D_bo1nx")
