@@ -25,9 +25,9 @@ func _unhandled_input(event):
 func _physics_process(delta):
 	# Define velocidad objetivo según entrada del jugador
 	if Input.is_action_pressed("move_forward"):
-		target_speed = -max_speed
-	elif Input.is_action_pressed("move_backward"):
 		target_speed = max_speed
+	elif Input.is_action_pressed("move_backward"):
+		target_speed = -max_speed
 	else:
 		target_speed = 0.0  # Si no se pulsa nada, se frena
 
