@@ -2,3 +2,6 @@ res://car.gd
 res://main.tscn
 res://Scenes/main.tscn
 res://Scenes/track.gd
+res://rampa_mesh..tres
+res://Scenes/piso.gd
+res://Scenes/cubo_prueba.gd
