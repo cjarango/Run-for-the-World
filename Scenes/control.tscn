@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=3 uid="uid://c0rprgxnh5dj0"]
+
+[ext_resource type="Script" uid="uid://bh2g7jfaipcgo" path="res://control.gd" id="1_vh8u0"]
+[ext_resource type="Texture2D" uid="uid://dq61rkh5cpycu" path="res://assets/textures/BitForge_logo.jpg" id="2_wpaqk"]
+[ext_resource type="AudioStream" uid="uid://bpquiwqflg875" path="res://assets/audio/Forge_sound.mp3" id="3_btyrf"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vh8u0"]
+
+[node name="Control" type="Node2D"]
+script = ExtResource("1_vh8u0")
+
+[node name="grupo_logo" type="TextureRect" parent="."]
+top_level = true
+offset_left = 358.0
+offset_top = 90.0
+offset_right = 774.0
+offset_bottom = 477.0
+texture = ExtResource("2_wpaqk")
+expand_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(585, 288)
+stream = ExtResource("3_btyrf")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+offset_left = 1.0
+offset_top = 3.0
+offset_right = 1150.0
+offset_bottom = 647.0
+texture = SubResource("CanvasTexture_vh8u0")

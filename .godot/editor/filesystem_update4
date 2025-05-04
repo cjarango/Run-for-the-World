@@ -1,9 +1,2 @@
-res://car.gd
-res://main.tscn
 res://Scenes/main.tscn
-res://Scenes/track.gd
-res://rampa_mesh..tres
-res://Scenes/piso.gd
-res://Scenes/cubo_prueba.gd
-res://Scenes/area_3d.gd
-res://Scenes/checkpoint.gd
+res://Scenes/control.tscn
