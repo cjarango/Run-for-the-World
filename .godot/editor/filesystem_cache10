@@ -1,6 +1,7 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1746234841
-icon.svg::CompressedTexture2D::8730900820435827186::1746232486::1746232514::1::::<><><>0<>0<>228c207ef1e04c62607a98c882fe554c<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
-car.gd::GDScript::1068496650220341099::1746234841::0::1::::<>CharacterBody3D<><>0<>0<><>::
-main.tscn::PackedScene::8232400687629289133::1746234841::0::1::::<><><>0<>0<><>::uid://pht8pgeg44x8::::res://car.gd
-::res://Scenes/::1746232622
+::res://::1746298338
+car.gd::GDScript::1068496650220341099::1746291438::0::1::::<>CharacterBody3D<><>0<>0<><>::
+icon.svg::CompressedTexture2D/CompressedTexture2D::8730900820435827186::1746232486::1746232514::1::::<><><>0<>0<>228c207ef1e04c62607a98c882fe554c<>res://.godot/imported/icon.svg-218a8f2b3041327d8a5756f3a245f83b.ctex::
+rampa_mesh..tres::PrismMesh::3873601443196130823::1746298338::0::1::::<><><>0<>0<><>::
+::res://Scenes/::1746297404
+main.tscn::PackedScene::8232400687629289133::1746297404::0::1::::<><><>0<>0<><>::uid://pht8pgeg44x8::::res://car.gd

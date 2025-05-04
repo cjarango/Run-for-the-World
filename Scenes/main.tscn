@@ -1,32 +1,86 @@
-[gd_scene load_steps=6 format=3 uid="uid://dpj3o3wod6hbh"]
+[gd_scene load_steps=13 format=3 uid="uid://dpj3o3wod6hbh"]
 
-[ext_resource type="Script" uid="uid://pht8pgeg44x8" path="res://car.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://gq2yff4fkuoy" path="res://Scenes/cubo_prueba.gd" id="1_jjgbg"]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_0xm2m"]
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7u77a"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_h2yge"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7u77a"]
+albedo_color = Color(0.412152, 0.412152, 0.412152, 1)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jjgbg"]
-size = Vector2(199, 199)
+size = Vector2(80, 80)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo1nx"]
-albedo_color = Color(0, 0, 0, 1)
+albedo_color = Color(0.525037, 0.514794, 5.77569e-07, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_jjgbg"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bo1nx"]
+
+[sub_resource type="PrismMesh" id="PrismMesh_jjgbg"]
+left_to_right = 1.0
+size = Vector3(4, 1, 4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjgbg"]
+albedo_color = Color(0.411765, 1, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjgbg"]
+size = Vector3(3.51575, 1, 4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8gbba"]
+size = Vector3(0.218262, 0.748901, 3.99463)
+
+[sub_resource type="LabelSettings" id="LabelSettings_jjgbg"]
+font_size = 23
 
 [node name="Main" type="Node3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0563297, 2.46571, 4.41963)
 
-[node name="Car" type="CharacterBody3D" parent="."]
+[node name="Piso" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_7u77a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00425243, -0.0235875, 0.0215549)
+material_override = SubResource("StandardMaterial3D_7u77a")
+mesh = SubResource("PlaneMesh_jjgbg")
+
+[node name="CuboPrueba" type="CharacterBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
 script = ExtResource("1_jjgbg")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Car"]
-shape = SubResource("BoxShape3D_0xm2m")
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CuboPrueba"]
+material_override = SubResource("StandardMaterial3D_bo1nx")
+mesh = SubResource("BoxMesh_jjgbg")
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Car"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 2, 0)
-mesh = SubResource("BoxMesh_h2yge")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CuboPrueba"]
+shape = SubResource("BoxShape3D_bo1nx")
 
-[node name="Camera3D" type="Camera3D" parent="Car"]
-transform = Transform3D(-0.999706, 0.0242145, -0.00118266, 0.0215694, 0.910655, 0.412604, 0.011068, 0.412457, -0.91091, -1.49152, 7.69037, -9.88893)
+[node name="Camera3D" type="Camera3D" parent="CuboPrueba"]
+transform = Transform3D(1, 0, 0, 0, 0.966685, 0.255969, 0, -0.255969, 0.966685, 0.890342, 0.46981, 2.83669)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("PlaneMesh_jjgbg")
-surface_material_override/0 = SubResource("StandardMaterial3D_bo1nx")
+[node name="Rampa" type="StaticBody3D" parent="."]
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Rampa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.318, 0.3, 20.342)
+mesh = SubResource("PrismMesh_jjgbg")
+material = SubResource("StandardMaterial3D_jjgbg")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Rampa"]
+transform = Transform3D(0.964012, -0.265859, 0, 0.265859, 0.964012, 0, 0, 0, 1, 9.68657, -0.15948, 20.3352)
+shape = SubResource("BoxShape3D_jjgbg")
+
+[node name="CollisionShape3D2" type="CollisionShape3D" parent="Rampa"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.429, 0.373951, 20.3283)
+shape = SubResource("BoxShape3D_8gbba")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 17.0
+offset_top = 15.0
+offset_right = 139.0
+offset_bottom = 47.0
+label_settings = SubResource("LabelSettings_jjgbg")
