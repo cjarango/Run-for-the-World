@@ -1,6 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dpj3o3wod6hbh"]
+[gd_scene load_steps=21 format=3 uid="uid://dpj3o3wod6hbh"]
 
 [ext_resource type="Script" uid="uid://gq2yff4fkuoy" path="res://Scenes/cubo_prueba.gd" id="1_jjgbg"]
+[ext_resource type="Script" uid="uid://du2815knplevd" path="res://Scenes/area_3d.gd" id="2_bo1nx"]
+[ext_resource type="Script" uid="uid://cc4pordw6j0td" path="res://Scenes/checkpoint.gd" id="3_8gbba"]
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7u77a"]
 
@@ -14,8 +16,10 @@ size = Vector2(80, 80)
 albedo_color = Color(0.525037, 0.514794, 5.77569e-07, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_jjgbg"]
+size = Vector3(1, 0.5, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bo1nx"]
+size = Vector3(1, 0.5, 1)
 
 [sub_resource type="PrismMesh" id="PrismMesh_jjgbg"]
 left_to_right = 1.0
@@ -33,22 +37,106 @@ size = Vector3(0.218262, 0.748901, 3.99463)
 [sub_resource type="LabelSettings" id="LabelSettings_jjgbg"]
 font_size = 23
 
+[sub_resource type="LabelSettings" id="LabelSettings_8gbba"]
+font_size = 23
+
+[sub_resource type="LabelSettings" id="LabelSettings_jjvhh"]
+line_spacing = 0.0
+font_size = 23
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gbba"]
+albedo_color = Color(0.789498, 1, 0.688815, 1)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_jjvhh"]
+material = SubResource("StandardMaterial3D_8gbba")
+size = Vector2(1, 25.7)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jjvhh"]
+resource_local_to_scene = true
+size = Vector3(1, 3, 25.532)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_kry3j"]
+size = Vector3(26, 6, 1)
+
 [node name="Main" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0563297, 2.46571, 4.41963)
 
 [node name="Piso" type="StaticBody3D" parent="."]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Piso"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
 shape = SubResource("WorldBoundaryShape3D_7u77a")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Piso"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00425243, -0.0235875, 0.0215549)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
 material_override = SubResource("StandardMaterial3D_7u77a")
 mesh = SubResource("PlaneMesh_jjgbg")
 
-[node name="CuboPrueba" type="CharacterBody3D" parent="."]
+[node name="Piso5" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 54)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso5"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_7u77a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso5"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
+material_override = SubResource("StandardMaterial3D_7u77a")
+mesh = SubResource("PlaneMesh_jjgbg")
+
+[node name="Piso2" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.958, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso2"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_7u77a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
+material_override = SubResource("StandardMaterial3D_7u77a")
+mesh = SubResource("PlaneMesh_jjgbg")
+
+[node name="Piso6" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.958, 0, 54)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso6"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_7u77a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso6"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
+material_override = SubResource("StandardMaterial3D_7u77a")
+mesh = SubResource("PlaneMesh_jjgbg")
+
+[node name="Piso3" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.00104718, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00104718, 132.958, 0, 27)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso3"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_7u77a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
+material_override = SubResource("StandardMaterial3D_7u77a")
+mesh = SubResource("PlaneMesh_jjgbg")
+
+[node name="Piso4" type="StaticBody3D" parent="."]
+transform = Transform3D(-0.00104718, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00104718, -53.05, 0, 27.077)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso4"]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
+shape = SubResource("WorldBoundaryShape3D_7u77a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
+material_override = SubResource("StandardMaterial3D_7u77a")
+mesh = SubResource("PlaneMesh_jjgbg")
+
+[node name="CuboPrueba" type="CharacterBody3D" parent="." groups=["Player"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+collision_layer = 3
+collision_mask = 3
+slide_on_ceiling = false
+floor_stop_on_slope = false
 script = ExtResource("1_jjgbg")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CuboPrueba"]
@@ -62,6 +150,7 @@ shape = SubResource("BoxShape3D_bo1nx")
 transform = Transform3D(1, 0, 0, 0, 0.966685, 0.255969, 0, -0.255969, 0.966685, 0.890342, 0.46981, 2.83669)
 
 [node name="Rampa" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06253, 4.76837e-07, -10.7005)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="Rampa"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.318, 0.3, 20.342)
@@ -84,3 +173,38 @@ offset_top = 15.0
 offset_right = 139.0
 offset_bottom = 47.0
 label_settings = SubResource("LabelSettings_jjgbg")
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+offset_left = 566.0
+offset_top = 15.0
+offset_right = 850.0
+offset_bottom = 56.0
+label_settings = SubResource("LabelSettings_8gbba")
+
+[node name="Timer" type="Label" parent="CanvasLayer"]
+offset_left = 1154.0
+offset_top = 11.0
+offset_right = 1399.0
+offset_bottom = 50.0
+label_settings = SubResource("LabelSettings_jjvhh")
+
+[node name="Meta" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+collision_layer = 3
+collision_mask = 3
+collision_priority = 100.0
+script = ExtResource("2_bo1nx")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Meta"]
+mesh = SubResource("PlaneMesh_jjvhh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Meta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.024)
+shape = SubResource("BoxShape3D_jjvhh")
+
+[node name="Checkpoint" type="Area3D" parent="."]
+script = ExtResource("3_8gbba")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.1564, 0.05, 19.1787)
+shape = SubResource("BoxShape3D_kry3j")

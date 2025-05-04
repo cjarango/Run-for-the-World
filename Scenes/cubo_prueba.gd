@@ -4,11 +4,11 @@ extends CharacterBody3D
 @export var max_engine_force := 2000.0  # Fuerza ajustada para escala Godot
 @export var mass := 60.0  # Masa más ligera para respuesta rápida
 @export var drag_coefficient := 0.002  # Resistencia aerodinámica reducida
-@export var rolling_resistance := 10.0  # Fricción ajustada
+@export var rolling_resistance := 5.0  # Fricción ajustada
 
 # 🎮 Control
 @export var mouse_sensitivity := 0.003
-@export var gravity := 30.0
+@export var gravity := 9.81
 
 @onready var speedometer_label = get_node("/root/Main/CanvasLayer/Label")
 
@@ -26,6 +26,7 @@ func _unhandled_input(event):
 		rotation.y = yaw
 	if event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+		
 
 func _physics_process(delta):
 	apply_gravity(delta)
@@ -56,8 +57,8 @@ func apply_resistive_forces(delta):
 	
 	# Fricción en el suelo
 	if is_on_floor():
-		velocity.x *= 0.95
-		velocity.z *= 0.95
+		velocity.x *= 0.97
+		velocity.z *= 0.97
 
 func update_speedometer():
 	if speedometer_label:
