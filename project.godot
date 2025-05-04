@@ -11,9 +11,10 @@ config_version=5
 [application]
 
 config/name="RaceForthePlanet"
-run/main_scene="uid://dpj3o3wod6hbh"
+run/main_scene="uid://c0rprgxnh5dj0"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+boot_splash/minimum_display_time=3000
 
 [global_group]
 
