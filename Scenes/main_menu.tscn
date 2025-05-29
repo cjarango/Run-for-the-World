@@ -1,0 +1,42 @@
+[gd_scene load_steps=5 format=3 uid="uid://c06rbebcxjr5i"]
+
+[ext_resource type="Texture2D" uid="uid://gxkdjil35j4n" path="res://assets/textures/MenuBackground.png" id="1_28flt"]
+[ext_resource type="Script" uid="uid://c1r1lxhv7lomg" path="res://Scenes/main_menu.gd" id="1_48xlc"]
+[ext_resource type="AudioStream" uid="uid://c6kbos445kxjs" path="res://assets/audio/Menu_BackgroundSound.wav" id="3_1ehe0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_1ehe0"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_48xlc")
+metadata/_edit_vertical_guides_ = [-33.0]
+
+[node name="BackGround" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = -16.0
+offset_right = 1173.0
+offset_bottom = 664.0
+texture = ExtResource("1_28flt")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 179.0
+offset_right = 310.0
+offset_bottom = 202.0
+text = "Race for the Planet"
+label_settings = SubResource("LabelSettings_1ehe0")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 376.0
+offset_right = 347.0
+offset_bottom = 415.0
+text = "Modo Contrarreloj"
+flat = true
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(547, 340)
+stream = ExtResource("3_1ehe0")

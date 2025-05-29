@@ -1,0 +1,11 @@
+|pos| username | time (seg)|
+1| juan | 39.72
+2| hjk | 56.09
+3| hg | 72.03
+4| juan | 83.47
+5| juan | 92.74
+6| gy | 93.75
+7| jk | 125.76
+8| prueba | 130.90
+9| fe | 263.29
+EOF

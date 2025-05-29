@@ -1,169 +1,131 @@
-[gd_scene load_steps=21 format=3 uid="uid://dpj3o3wod6hbh"]
+[gd_scene load_steps=50 format=3 uid="uid://dpj3o3wod6hbh"]
 
 [ext_resource type="Script" uid="uid://gq2yff4fkuoy" path="res://Scenes/cubo_prueba.gd" id="1_jjgbg"]
 [ext_resource type="Script" uid="uid://du2815knplevd" path="res://Scenes/area_3d.gd" id="2_bo1nx"]
-[ext_resource type="Script" uid="uid://cc4pordw6j0td" path="res://Scenes/checkpoint.gd" id="3_8gbba"]
+[ext_resource type="ArrayMesh" uid="uid://b58xp5svxi0jx" path="res://assets/textures/Kart1.obj" id="2_kry3j"]
+[ext_resource type="AudioStream" uid="uid://c82k0rgy8b6mi" path="res://assets/audio/Acel.wav" id="3_21xkr"]
+[ext_resource type="PackedScene" uid="uid://brwvpq6q3n2t5" path="res://assets/textures/Pista2.glb" id="4_jjvhh"]
+[ext_resource type="Script" uid="uid://da1ek2t05tryn" path="res://Scenes/checkpoint_1.gd" id="6_6bp64"]
+[ext_resource type="Script" uid="uid://bnt8frsqpoquc" path="res://Scenes/checkpoint_2.gd" id="7_344ge"]
+[ext_resource type="Script" uid="uid://crtvvcjeq1is6" path="res://Scenes/checkpoint_3.gd" id="8_ynf5e"]
+[ext_resource type="Script" uid="uid://hf155rdd3y0t" path="res://Scenes/power_up_1.gd" id="10_d1ilt"]
+[ext_resource type="Script" uid="uid://npp2sclam803" path="res://Scenes/power_up_manager.gd" id="10_hptm8"]
+[ext_resource type="Script" uid="uid://cmpvn56ow24u6" path="res://Scenes/power_up_2.gd" id="11_6iyac"]
+[ext_resource type="Script" uid="uid://dm0q4xcmlkxpu" path="res://Scenes/power_up_3.gd" id="12_fdnlq"]
+[ext_resource type="Script" uid="uid://bbh2tu1ha5bdp" path="res://Scenes/power_up_4.gd" id="13_jkdf5"]
+[ext_resource type="Script" uid="uid://cxoyc081jckg3" path="res://Scenes/world_environment.gd" id="14_jkdf5"]
+[ext_resource type="Script" uid="uid://dljwhyuem03do" path="res://Scenes/PollutionManager.gd" id="15_wsu2k"]
+[ext_resource type="Script" uid="uid://j4aas3sgrhfw" path="res://Scenes/physics_manager.gd" id="16_k12tt"]
+[ext_resource type="Script" uid="uid://bfqt76waronqd" path="res://Scenes/i_physics_handler.gd" id="17_h1bgf"]
+[ext_resource type="Script" uid="uid://ck0jv2pu2a8qg" path="res://Scenes/i_pollution_manager.gd" id="18_b3802"]
+[ext_resource type="Script" uid="uid://cq8t47ro5ksoe" path="res://Scenes/i_power_up_manager.gd" id="19_fevyy"]
+[ext_resource type="Script" uid="uid://dnayenuwrudx3" path="res://Scenes/i_input_handler.gd" id="20_hibaj"]
+[ext_resource type="Script" uid="uid://bnp8uc4tk00bh" path="res://Scenes/player_input_handler.gd" id="21_pdsj5"]
+[ext_resource type="Script" uid="uid://cbhup2wq03cli" path="res://Scenes/i_camera_controller.gd" id="22_ee4r6"]
+[ext_resource type="Script" uid="uid://58rkapy1gmlo" path="res://Scenes/player_camera_controller.gd" id="23_gt3je"]
+[ext_resource type="Script" uid="uid://c2pc4wtbaq7v4" path="res://Scenes/i_movement_controller.gd" id="24_3pmx8"]
+[ext_resource type="Script" uid="uid://d2gjg0uyy2bn6" path="res://Scenes/movement_controller.gd" id="25_u50mg"]
+[ext_resource type="Script" uid="uid://cc8x5guxks28g" path="res://Scenes/i_power_up_controller.gd" id="26_cbgmd"]
+[ext_resource type="Script" uid="uid://5ajc7ftqeoew" path="res://Scenes/power_up_controller.gd" id="27_1w6v2"]
 
-[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_7u77a"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7u77a"]
-albedo_color = Color(0.412152, 0.412152, 0.412152, 1)
-
-[sub_resource type="PlaneMesh" id="PlaneMesh_jjgbg"]
-size = Vector2(80, 80)
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kry3j"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bo1nx"]
+next_pass = SubResource("CanvasItemMaterial_kry3j")
 albedo_color = Color(0.525037, 0.514794, 5.77569e-07, 1)
 
-[sub_resource type="BoxMesh" id="BoxMesh_jjgbg"]
-size = Vector3(1, 0.5, 1)
+[sub_resource type="Skin" id="Skin_21xkr"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bo1nx"]
-size = Vector3(1, 0.5, 1)
-
-[sub_resource type="PrismMesh" id="PrismMesh_jjgbg"]
-left_to_right = 1.0
-size = Vector3(4, 1, 4)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jjgbg"]
-albedo_color = Color(0.411765, 1, 1, 1)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_jjgbg"]
-size = Vector3(3.51575, 1, 4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_8gbba"]
-size = Vector3(0.218262, 0.748901, 3.99463)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jjgbg"]
 font_size = 23
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_8gbba"]
 font_size = 23
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_jjvhh"]
 line_spacing = 0.0
 font_size = 23
+font_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8gbba"]
-albedo_color = Color(0.789498, 1, 0.688815, 1)
+[sub_resource type="LabelSettings" id="LabelSettings_wsu2k"]
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_jjvhh"]
-material = SubResource("StandardMaterial3D_8gbba")
 size = Vector2(1, 25.7)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_jjvhh"]
 resource_local_to_scene = true
-size = Vector3(1, 3, 25.532)
+size = Vector3(1, 6, 25)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_kry3j"]
-size = Vector3(26, 6, 1)
+[sub_resource type="BoxShape3D" id="BoxShape3D_21xkr"]
+size = Vector3(1, 6, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6bp64"]
+size = Vector3(1, 10, 25)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_344ge"]
+size = Vector3(1, 10, 30)
+
+[sub_resource type="Environment" id="Environment_wsu2k"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_ynf5e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_hptm8"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_d1ilt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6iyac"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_fdnlq"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jkdf5"]
+size = Vector3(2, 3, 2)
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_wsu2k"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_k12tt"]
+size = Vector3(2, 3, 2)
 
 [node name="Main" type="Node3D"]
+transform = Transform3D(14.1436, 0, 0, 0, 14.1436, 0, 0, 0, 14.1436, 0, 0, 0)
 
-[node name="Piso" type="StaticBody3D" parent="."]
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_7u77a")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
-material_override = SubResource("StandardMaterial3D_7u77a")
-mesh = SubResource("PlaneMesh_jjgbg")
-
-[node name="Piso5" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 54)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso5"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_7u77a")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso5"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
-material_override = SubResource("StandardMaterial3D_7u77a")
-mesh = SubResource("PlaneMesh_jjgbg")
-
-[node name="Piso2" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.958, 0, 0)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso2"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_7u77a")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso2"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
-material_override = SubResource("StandardMaterial3D_7u77a")
-mesh = SubResource("PlaneMesh_jjgbg")
-
-[node name="Piso6" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 79.958, 0, 54)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso6"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_7u77a")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso6"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
-material_override = SubResource("StandardMaterial3D_7u77a")
-mesh = SubResource("PlaneMesh_jjgbg")
-
-[node name="Piso3" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.00104718, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00104718, 132.958, 0, 27)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso3"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_7u77a")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso3"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
-material_override = SubResource("StandardMaterial3D_7u77a")
-mesh = SubResource("PlaneMesh_jjgbg")
-
-[node name="Piso4" type="StaticBody3D" parent="."]
-transform = Transform3D(-0.00104718, 0, -0.999999, 0, 1, 0, 0.999999, 0, -0.00104718, -53.05, 0, 27.077)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Piso4"]
-transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 1.30131, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_7u77a")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Piso4"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.322452, 0.00425243, -0.0235875, 0.0215549)
-material_override = SubResource("StandardMaterial3D_7u77a")
-mesh = SubResource("PlaneMesh_jjgbg")
-
-[node name="CuboPrueba" type="CharacterBody3D" parent="." groups=["Player"]]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+[node name="CuboPrueba" type="CharacterBody3D" parent="." node_paths=PackedStringArray("physics_handler", "pollution_manager", "powerup_manager", "input_handler", "camera_controller", "movement_controller", "powerup_controller") groups=["Player"]]
+transform = Transform3D(-0.999278, 0, -0.0379866, 0, 1, 0, 0.0379866, 0, -0.999278, -24.4548, 0.229272, 3.98672)
 collision_layer = 3
 collision_mask = 3
 slide_on_ceiling = false
 floor_stop_on_slope = false
 script = ExtResource("1_jjgbg")
+physics_handler = NodePath("../IPhysicsHandler/PhysicsManager")
+pollution_manager = NodePath("../IPollutionManager/PollutionManager")
+powerup_manager = NodePath("../IPowerUpManager/PowerUpManager")
+input_handler = NodePath("../IInputHandler/PlayerInputHandler")
+camera_controller = NodePath("../ICameraController/PlayerCameraController")
+movement_controller = NodePath("../IMovementController/MovementController")
+powerup_controller = NodePath("../IPowerUpController/PowerUpController")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CuboPrueba"]
 material_override = SubResource("StandardMaterial3D_bo1nx")
-mesh = SubResource("BoxMesh_jjgbg")
+mesh = ExtResource("2_kry3j")
+skin = SubResource("Skin_21xkr")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="CuboPrueba"]
 shape = SubResource("BoxShape3D_bo1nx")
 
 [node name="Camera3D" type="Camera3D" parent="CuboPrueba"]
-transform = Transform3D(1, 0, 0, 0, 0.966685, 0.255969, 0, -0.255969, 0.966685, 0.890342, 0.46981, 2.83669)
+transform = Transform3D(-0.0706799, -0.000465534, 0.00175812, -2.1053e-10, 0.0683479, 0.0180979, -0.00181871, 0.0180919, -0.0683252, -0.248449, 1.63535, -2.68777)
+fov = 129.375
+far = 10000.0
 
-[node name="Rampa" type="StaticBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.06253, 4.76837e-07, -10.7005)
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Rampa"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.318, 0.3, 20.342)
-mesh = SubResource("PrismMesh_jjgbg")
-material = SubResource("StandardMaterial3D_jjgbg")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Rampa"]
-transform = Transform3D(0.964012, -0.265859, 0, 0.265859, 0.964012, 0, 0, 0, 1, 9.68657, -0.15948, 20.3352)
-shape = SubResource("BoxShape3D_jjgbg")
-
-[node name="CollisionShape3D2" type="CollisionShape3D" parent="Rampa"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.429, 0.373951, 20.3283)
-shape = SubResource("BoxShape3D_8gbba")
+[node name="AccelerationSound" type="AudioStreamPlayer3D" parent="CuboPrueba"]
+transform = Transform3D(0.0707034, 0, 0, 0, 0.0707034, 0, 0, 0, 0.0707034, 0, 0, 0)
+stream = ExtResource("3_21xkr")
+attenuation_model = 3
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -182,29 +144,166 @@ offset_bottom = 58.0
 label_settings = SubResource("LabelSettings_8gbba")
 
 [node name="Timer" type="Label" parent="CanvasLayer"]
-offset_left = 979.0
+offset_left = 880.0
 offset_top = 15.0
-offset_right = 1224.0
+offset_right = 1125.0
 offset_bottom = 54.0
 label_settings = SubResource("LabelSettings_jjvhh")
 
+[node name="PowerUpLabel" type="Label" parent="CanvasLayer"]
+offset_left = 57.0
+offset_top = 582.0
+offset_right = 258.0
+offset_bottom = 613.0
+label_settings = SubResource("LabelSettings_wsu2k")
+
+[node name="PollutionBar" type="ProgressBar" parent="CanvasLayer"]
+offset_left = 890.0
+offset_top = 591.0
+offset_right = 1127.0
+offset_bottom = 623.0
+
 [node name="Meta" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
+transform = Transform3D(-0.00493922, 0, 0.999988, 0, 1, 0, -0.999988, 0, -0.00493922, -30.8465, 0, -5.53765)
 collision_layer = 3
 collision_mask = 3
 collision_priority = 100.0
 script = ExtResource("2_bo1nx")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Meta"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20396, -1.67451, 0.528307)
 mesh = SubResource("PlaneMesh_jjvhh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Meta"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, 0.024)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.06462, 2.83464, 2.67171)
 shape = SubResource("BoxShape3D_jjvhh")
 
-[node name="Checkpoint" type="Area3D" parent="."]
-script = ExtResource("3_8gbba")
+[node name="Checkpoint1" type="Area3D" parent="."]
+transform = Transform3D(0.452176, -0.398306, -0.798054, -8.25711e-05, 0.894732, -0.446604, 0.891929, 0.202009, 0.404543, -54.9915, -6.47309e-06, -222.491)
+script = ExtResource("6_6bp64")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -53.1564, 0.05, 19.1787)
-shape = SubResource("BoxShape3D_kry3j")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint1"]
+transform = Transform3D(1, 0, 0, 0, 0.996084, 0.0884075, 0, -0.0884075, 0.996084, -0.29889, 3.55324, 0.568939)
+shape = SubResource("BoxShape3D_21xkr")
+
+[node name="Checkpoint2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -298.371, 2.1577e-06, -132.936)
+script = ExtResource("7_344ge")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint2"]
+transform = Transform3D(0.106872, 0, 0.994273, 0, 1, 0, -0.994273, 0, 0.106872, 2.23275, -0.415371, 1.51943)
+shape = SubResource("BoxShape3D_6bp64")
+
+[node name="Checkpoint3" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.7089, 0, 126.919)
+script = ExtResource("8_ynf5e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Checkpoint3"]
+transform = Transform3D(-0.159778, 0, 0.987153, 0, 1, 0, -0.987153, 0, -0.159778, 1.95881, 0, -27.3251)
+shape = SubResource("BoxShape3D_344ge")
+
+[node name="Pista" parent="." instance=ExtResource("4_jjvhh")]
+transform = Transform3D(-0.0272063, 0, 0.99963, 0, 1, 0, -0.99963, 0, -0.0272063, 0, 0, 0)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." node_paths=PackedStringArray("pollution_manager")]
+environment = SubResource("Environment_wsu2k")
+script = ExtResource("14_jkdf5")
+pollution_manager = NodePath("../IPollutionManager/PollutionManager")
+
+[node name="IPhysicsHandler" type="Node" parent="."]
+script = ExtResource("17_h1bgf")
+
+[node name="PhysicsManager" type="Node" parent="IPhysicsHandler"]
+script = ExtResource("16_k12tt")
+
+[node name="IPollutionManager" type="Node" parent="."]
+script = ExtResource("18_b3802")
+
+[node name="PollutionManager" type="Node" parent="IPollutionManager"]
+script = ExtResource("15_wsu2k")
+
+[node name="IPowerUpManager" type="Node" parent="."]
+script = ExtResource("19_fevyy")
+
+[node name="PowerUpManager" type="Node" parent="IPowerUpManager" node_paths=PackedStringArray("powerup_label")]
+script = ExtResource("10_hptm8")
+powerup_label = NodePath("../../CanvasLayer/PowerUpLabel")
+
+[node name="PowerUps" type="Node" parent="."]
+
+[node name="PowerUp1" type="Area3D" parent="PowerUps" groups=["PowerUp"]]
+transform = Transform3D(14.1436, 0, 0, 0, 14.1436, 0, 0, 0, 14.1436, -2372.76, 2.91388, -3990.52)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("10_d1ilt")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PowerUps/PowerUp1"]
+transform = Transform3D(0.999958, -0.000157708, -0.00920585, -0.00226217, 0.964996, -0.262254, 0.00892496, 0.262264, 0.964955, 0.164976, 3.23844, -1.3622)
+mesh = SubResource("PlaneMesh_ynf5e")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PowerUps/PowerUp1"]
+transform = Transform3D(1, 0, 0, 0, 0.940561, -0.339625, 0, 0.339625, 0.940561, 0.318717, 2.96072, -1.34178)
+shape = SubResource("BoxShape3D_hptm8")
+
+[node name="PowerUp2" type="Area3D" parent="PowerUps" groups=["PowerUp"]]
+transform = Transform3D(14.1436, 0, 0, 0, 14.1436, 0, 0, 0, 14.1436, -3568.54, 0, -618.204)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("11_6iyac")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PowerUps/PowerUp2"]
+mesh = SubResource("PlaneMesh_d1ilt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PowerUps/PowerUp2"]
+shape = SubResource("BoxShape3D_6iyac")
+
+[node name="PowerUp3" type="Area3D" parent="PowerUps" groups=["PowerUp"]]
+transform = Transform3D(14.1436, 0, 0, 0, 14.1436, 0, 0, 0, 14.1436, -4136.93, 0, 755.599)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("12_fdnlq")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PowerUps/PowerUp3"]
+mesh = SubResource("PlaneMesh_fdnlq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PowerUps/PowerUp3"]
+shape = SubResource("BoxShape3D_jkdf5")
+
+[node name="PowerUp4" type="Area3D" parent="PowerUps" groups=["PowerUp"]]
+transform = Transform3D(14.1436, 0, 0, 0, 14.1436, 0, 0, 0, 14.1436, -364.031, 0, 2187.87)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("13_jkdf5")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PowerUps/PowerUp4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.035233, 0.100645, 0)
+mesh = SubResource("PlaneMesh_wsu2k")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="PowerUps/PowerUp4"]
+shape = SubResource("BoxShape3D_k12tt")
+
+[node name="IInputHandler" type="Node" parent="."]
+script = ExtResource("20_hibaj")
+
+[node name="PlayerInputHandler" type="Node" parent="IInputHandler"]
+script = ExtResource("21_pdsj5")
+
+[node name="ICameraController" type="Node" parent="."]
+script = ExtResource("22_ee4r6")
+
+[node name="PlayerCameraController" type="Node" parent="ICameraController"]
+script = ExtResource("23_gt3je")
+camera_path = NodePath("../../CuboPrueba/Camera3D")
+
+[node name="IMovementController" type="Node" parent="."]
+script = ExtResource("24_3pmx8")
+
+[node name="MovementController" type="Node" parent="IMovementController"]
+script = ExtResource("25_u50mg")
+
+[node name="IPowerUpController" type="Node" parent="."]
+script = ExtResource("26_cbgmd")
+
+[node name="PowerUpController" type="Node" parent="IPowerUpController" node_paths=PackedStringArray("movement_controller")]
+script = ExtResource("27_1w6v2")
+movement_controller = NodePath("../../IMovementController/MovementController")
