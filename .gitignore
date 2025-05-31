@@ -13,3 +13,6 @@ export_credentials.cfg
 .mono/
 data_*/
 mono_crash.*.json
+
+# Ignorar archivo grande para evitar problemas con GitHub
+assets/textures/Pista2.glb
