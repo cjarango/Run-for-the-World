@@ -4,5 +4,5 @@ func _ready():
 	connect("body_entered", _on_body_entered)
 
 func _on_body_entered(body):
-	if body.name == "CuboPrueba" and body.is_in_group("Player"):
+	if body.is_in_group("Player"):
 		print("Checkpoint ", name, " alcanzado ✅")

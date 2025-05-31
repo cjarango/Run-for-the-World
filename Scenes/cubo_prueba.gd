@@ -10,15 +10,16 @@ extends CharacterBody3D
 @export var powerup_controller: IPowerUpController
 
 ## Configuración del vehículo
-@export var max_engine_force := 400000.0
-@export var mass := 60.0
+@export var max_engine_force := 40000.0
+@export var mass := 150.0  # Aumentado para mejor física
 @export var drag_coefficient := 0.002
 @export var rolling_resistance := 0.1
-@export var gravity := 20
+@export var gravity := 30.0  # Aumentado para mejor adherencia
 
 ## Componentes del nodo
 @onready var acceleration_sound = $AccelerationSound
 @onready var speedometer_label: Label = get_node("/root/Main/CanvasLayer/Label")
+@onready var ray_cast = $GroundRayCast # Asegúrate de tener un RayCast3D apuntando hacia abajo
 
 ## Configuración de controles
 @export var mouse_sensitivity := 0.003
@@ -27,12 +28,14 @@ extends CharacterBody3D
 ## Variables de estado
 var yaw := 0.0
 var current_engine_force := 0.0
+var current_floor_normal: Vector3 = Vector3.UP
 
 signal movement_with_pollution(boost_active: bool)
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	yaw = rotation.y
+	
 	if movement_controller:
 		movement_controller.set_base_parameters(max_engine_force)
 	
@@ -40,7 +43,9 @@ func _ready():
 		powerup_controller.initialize(max_engine_force)
 		powerup_controller.boost_started.connect(_on_boost_started)
 		powerup_controller.boost_ended.connect(_on_boost_ended)
+	
 	_initialize_dependencies()
+	camera_controller.set_enable(true)
 
 func _initialize_dependencies():
 	if pollution_manager:
@@ -59,9 +64,13 @@ func _configure_physics_handler():
 	physics_handler.set_drag_coefficient(drag_coefficient)
 	physics_handler.set_gravity(gravity)
 	physics_handler.set_is_on_floor_func(_is_on_floor)
+	physics_handler.set_slope_adjustment_enabled(true)
+	physics_handler.set_max_slope_angle(45.0)  # Ángulo máximo de pendiente
+	physics_handler.set_max_slope_gravity_boost(50.0)  # Gravedad extra en pendientes
+	physics_handler.set_slope_adjustment_strength(0.8)  # Fuerza de ajuste
 
 func _is_on_floor() -> bool:
-	return is_on_floor()
+	return is_on_floor() or ray_cast.is_colliding()
 
 func _unhandled_input(event):
 	if event is InputEventMouseMotion:
@@ -72,7 +81,7 @@ func _unhandled_input(event):
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 func _process(delta):
-	if input_handler:
+	if input_handler and camera_controller.get_enable() == true:
 		yaw -= input_handler.get_yaw_delta(delta)
 		rotation.y = yaw
 
@@ -80,13 +89,28 @@ func _process(delta):
 			powerup_manager.activar_powerup()
 	
 	if camera_controller:
-		camera_controller.update_camera_position(self)
+		if camera_controller.get_enable() == true:
+			camera_controller.update_camera_position(self)
 
 func _physics_process(delta):
+	_update_floor_normal()  # Actualizar la normal del suelo cada frame
 	_handle_movement(delta)
 	_update_physics(delta)
 	move_and_slide()
 	update_speedometer()
+
+func _update_floor_normal():
+	# Obtener la normal del suelo actual
+	if is_on_floor():
+		current_floor_normal = get_floor_normal()
+	elif ray_cast.is_colliding():
+		current_floor_normal = ray_cast.get_collision_normal()
+	else:
+		current_floor_normal = Vector3.UP
+	
+	# Pasar la normal al physics handler
+	if physics_handler:
+		physics_handler.set_floor_normal(current_floor_normal)
 
 func _handle_movement(delta):
 	if input_handler and movement_controller:

@@ -5,6 +5,7 @@ class_name PlayerCameraController
 @export var offset_distance := 20.0
 @export var keep_height := true
 
+var enable: bool
 var camera: Camera3D
 
 func _ready():
@@ -12,6 +13,13 @@ func _ready():
 		camera = get_node(camera_path)
 	else:
 		push_error("No se asignó camera_path en PlayerCameraController")
+		
+
+func set_enable(value: bool) -> void:
+	enable = value
+
+func get_enable():
+	return enable
 
 func update_camera_position(player: Node3D) -> void:
 	if camera == null:

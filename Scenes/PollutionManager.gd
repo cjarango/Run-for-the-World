@@ -1,14 +1,22 @@
 extends IPollutionManager
 
-@export var max_pollution: float = 100.0              ## Límite máximo de contaminación.
-@export var pollution_decay_rate: float = 0.005       ## Reducción por segundo.
-@export var base_pollution_increase: float = 0.02     ## Contaminación base por emisión.
-@export var boost_pollution_increase: float = 0.04    ## Extra si hay "boost".
+@export var max_pollution: float = 100.0
+@export var pollution_decay_rate: float = 0.005
+@export var base_pollution_increase: float = 0.02
+@export var boost_pollution_increase: float = 0.04
 
 var _current_pollution: float = 0.0
 var _emitters: Array[Node] = []
 
 # -----------------------------------------------------------------------------
+## Obtiene el nivel actual de contaminación (0 a max_pollution)
+func get_pollution() -> float:
+	return _current_pollution
+
+## Obtiene el porcentaje de contaminación (0.0 a 1.0)
+func get_pollution_percent() -> float:
+	return _current_pollution / max_pollution
+
 ## Registra un emisor y conecta su señal de contaminación.
 func register_emitter(emitter: Node) -> void:
 	if not _emitters.has(emitter):

@@ -1,34 +1,3 @@
-[remap]
-
-importer="texture"
-type="CompressedTexture2D"
-uid="uid://dq61rkh5cpycu"
-path="res://.godot/imported/BitForge_logo.jpg-46e71caeb8d9d6c16bd5f21becc51fa2.ctex"
-metadata={
-"vram_texture": false
-}
-
-[deps]
-
-source_file="res://assets/textures/BitForge_logo.jpg"
-dest_files=["res://.godot/imported/BitForge_logo.jpg-46e71caeb8d9d6c16bd5f21becc51fa2.ctex"]
-
-[params]
-
-compress/mode=0
-compress/high_quality=false
-compress/lossy_quality=0.7
-compress/hdr_compression=1
-compress/normal_map=0
-compress/channel_pack=0
-mipmaps/generate=false
-mipmaps/limit=-1
-roughness/mode=0
-roughness/src_normal=""
-process/fix_alpha_border=true
-process/premult_alpha=false
-process/normal_map_invert_y=false
-process/hdr_as_srgb=false
-process/hdr_clamp_exposure=false
-process/size_limit=0
-detect_3d/compress_to=1
+version https://git-lfs.github.com/spec/v1
+oid sha256:0829f335be04b519eb2cf9b52da37858866966740ead3e6440769bf70fc4394d
+size 789

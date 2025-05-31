@@ -22,7 +22,13 @@ func get_yaw_delta(delta: float) -> float:
 	if abs(joy_x) > 0.1:
 		# ← Invertido antes, ahora se suma
 		accumulated_yaw_delta += joy_x * joystick_sensitivity * delta
-	
+
+	# Agregar movimiento horizontal por acciones del Input Map
+	if Input.is_action_pressed("move_right"):
+		accumulated_yaw_delta += joystick_sensitivity * delta
+	if Input.is_action_pressed("move_left"):
+		accumulated_yaw_delta -= joystick_sensitivity * delta
+
 	var delta_to_return = accumulated_yaw_delta
 	accumulated_yaw_delta = 0.0
 	return delta_to_return
@@ -33,4 +39,4 @@ func is_boost_activation_requested() -> bool:
 	return was_requested
 
 func get_input_axis(forward_action: String, backward_action: String) -> float:
-	return Input.get_axis(forward_action, backward_action)
+	return Input.get_axis(forward_action, backward_action)	

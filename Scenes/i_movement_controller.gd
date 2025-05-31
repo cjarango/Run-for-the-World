@@ -4,8 +4,10 @@ class_name IMovementController
 # Configura los parámetros base del movimiento
 func set_base_parameters(base_force: float) -> void:
 	pass
+	
+func set_enable(value: bool) -> void:
+	pass
 
-# Establece el eje de input (-1 a 1)
 func set_input_axis(value: float) -> void:
 	pass
 

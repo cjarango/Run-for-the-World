@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://bbr0c8lowgt6n"]
+
+[ext_resource type="PackedScene" uid="uid://dpj3o3wod6hbh" path="res://Scenes/main.tscn" id="1_42yti"]
+[ext_resource type="Script" uid="uid://gq2yff4fkuoy" path="res://Scenes/cubo_prueba.gd" id="2_eumxw"]
+[ext_resource type="ArrayMesh" uid="uid://b58xp5svxi0jx" path="res://assets/textures/Kart1.obj" id="3_svhvw"]
+[ext_resource type="AudioStream" uid="uid://c82k0rgy8b6mi" path="res://assets/audio/Acel.wav" id="4_svhvw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5ne1p"]
+albedo_color = Color(0, 0.101961, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_o33aa"]
+size = Vector3(1.5, 1.5, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_q0ldm"]
+resource_local_to_scene = true
+size = Vector3(1, 6, 25)
+
+[node name="Main" instance=ExtResource("1_42yti")]
+
+[node name="Player2" type="CharacterBody3D" parent="." index="0" node_paths=PackedStringArray("physics_handler", "pollution_manager", "powerup_manager", "input_handler", "camera_controller", "movement_controller", "powerup_controller") groups=["Player"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -32.77, 0, -1.79154)
+script = ExtResource("2_eumxw")
+physics_handler = NodePath("../IPhysicsHandler/PhysicsManager")
+pollution_manager = NodePath("../IPollutionManager/PollutionManager")
+powerup_manager = NodePath("../IPowerUpManager/PowerUpManager")
+input_handler = NodePath("../IInputHandler/PlayerInputHandler")
+camera_controller = NodePath("../ICameraController/PlayerCameraController")
+movement_controller = NodePath("../IMovementController/MovementController")
+powerup_controller = NodePath("../IPowerUpController/PowerUpController")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player2" index="0"]
+transform = Transform3D(-0.998093, 0, -0.0617279, 0, 1, 0, 0.0617279, 0, -0.998093, 1.25883, 0, 1.43141)
+material_override = SubResource("StandardMaterial3D_5ne1p")
+mesh = ExtResource("3_svhvw")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player2" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.21016, 0, 1.44684)
+shape = SubResource("BoxShape3D_o33aa")
+
+[node name="AccelerationSound" type="AudioStreamPlayer3D" parent="Player2" index="2"]
+stream = ExtResource("4_svhvw")
+
+[node name="Camera3D" type="Camera3D" parent="Player2" index="3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.13798, 1.635, 3.16871)
+fov = 129.4
+far = 10000.0
+
+[node name="CollisionShape3D" parent="Meta" index="1"]
+shape = SubResource("BoxShape3D_q0ldm")

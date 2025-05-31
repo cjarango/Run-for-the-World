@@ -12,12 +12,12 @@ func _ready():
 	await get_tree().create_timer(3).timeout
 	
 	# Cambiar a la escena principal (o splash de Godot)
-	if ResourceLoader.exists("res://Scenes/main_menu.tscn"):
-		get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
+	if ResourceLoader.exists("res://Scenes/Menu.tscn"):
+		get_tree().change_scene_to_file("res://Scenes/Menu.tscn")
 	else:
-		push_error("Error: Escena principal no encontrada (res://Scenes/main_menu.tscn")
+		push_error("Error: Escena principal no encontrada (res://Scenes/Menu.tscn")
 
-func _input(event):
+# func _input(event):
 	# Opcional: Saltar con cualquier tecla/clic
-	if event is InputEventKey or event is InputEventMouseButton:
-		get_tree().change_scene_to_file("res://Scenes/main.tscn")
+	# if event is InputEventKey or event is InputEventMouseButton:
+		# get_tree().change_scene_to_file("res://Scenes/main.tscn")

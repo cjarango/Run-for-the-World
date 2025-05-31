@@ -1,0 +1,78 @@
+[gd_scene load_steps=10 format=3 uid="uid://bgwsdlfjpfw73"]
+
+[ext_resource type="Texture2D" uid="uid://dgt3sp6d27kr1" path="res://assets/textures/MenuBackground.png" id="1_2ydjc"]
+[ext_resource type="Script" uid="uid://bm62yda386gev" path="res://name_entry.gd" id="1_refgq"]
+[ext_resource type="Script" uid="uid://dr3dejef6xory" path="res://Scenes/comenzar.gd" id="2_lbcyl"]
+[ext_resource type="PackedScene" uid="uid://dpj3o3wod6hbh" path="res://Scenes/main.tscn" id="4_bempf"]
+[ext_resource type="Script" uid="uid://01mru0eqvok1" path="res://Scenes/volver2.gd" id="5_b7q71"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2ydjc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nykjg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lbcyl"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_refgq"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("volver_btn", "continuar_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_refgq")
+volver_btn = NodePath("Volver")
+continuar_btn = NodePath("Comenzar")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("1_2ydjc")
+expand_mode = 1
+
+[node name="LineEdit" type="LineEdit" parent="."]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 277.0
+offset_right = 704.0
+offset_bottom = 322.0
+theme_override_font_sizes/font_size = 20
+
+[node name="Comenzar" type="Button" parent="."]
+layout_mode = 0
+offset_left = 51.0
+offset_top = 418.0
+offset_right = 206.0
+offset_bottom = 468.0
+theme_override_colors/font_hover_color = Color(0.882353, 0.807843, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2ydjc")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_nykjg")
+text = "Comenzar"
+flat = true
+script = ExtResource("2_lbcyl")
+target_scene = ExtResource("4_bempf")
+
+[node name="Volver" type="Button" parent="."]
+layout_mode = 0
+offset_left = 57.0
+offset_top = 486.0
+offset_right = 157.0
+offset_bottom = 536.0
+theme_override_colors/font_hover_color = Color(0.882353, 0.807843, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_lbcyl")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_refgq")
+text = "Volver"
+flat = true
+script = ExtResource("5_b7q71")
+
+[node name="ErrorLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 26.0
+offset_right = 65.0
+offset_bottom = 49.0
+theme_override_colors/font_color = Color(1, 0, 0, 1)

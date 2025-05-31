@@ -24,7 +24,7 @@ func _process(delta):
 func get_is_boost_active() -> bool:
 	return is_boost_active
 
-func activate_speed_boost(duration: float, force_multiplier: float = 2.0):
+func activate_speed_boost(duration: float, force_multiplier: float = 5.0):
 	if is_boost_active:
 		return
 	

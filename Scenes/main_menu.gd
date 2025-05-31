@@ -1,17 +1,25 @@
 extends Control
 
-@onready var time_attack_button = $Button
-@onready var background_music = $BackgroundMusic  # AudioStreamPlayer
+@export var contrarreloj_btn: Button
+@export var multijugador_btn: Button
+@export var salir_btn: Button
+
+@onready var background_music = $BackgroundMusic
 
 func _ready():
-	time_attack_button.pressed.connect(on_time_attack_pressed)
-	
+	_connect_buttons()
 	background_music.play()
 
-func _process(delta):
-	if not background_music.is_playing():
-		background_music.play()
+func _connect_buttons():
+	if contrarreloj_btn and contrarreloj_btn.has_method("execute"):
+		contrarreloj_btn.pressed.connect(contrarreloj_btn.execute)
+	
+	if multijugador_btn and multijugador_btn.has_method("execute"):
+		multijugador_btn.pressed.connect(multijugador_btn.execute)
+	
+	if salir_btn and salir_btn.has_method("execute"):
+		salir_btn.pressed.connect(salir_btn.execute)
 
-func on_time_attack_pressed():
-	background_music.stop()
-	get_tree().change_scene_to_file("res://Scenes/name_entry.tscn")
+func _process(delta):
+	if not background_music.playing:
+		background_music.play()

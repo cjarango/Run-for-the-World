@@ -1,3 +1,90 @@
-[gd_scene format=3 uid="uid://e11myg2uh66o"]
+[gd_scene load_steps=14 format=3 uid="uid://dhaqgn16ulasy"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://btybprsk8yyeg" path="res://assets/textures/MenuBackground_2.png" id="1_3kf3n"]
+[ext_resource type="Script" uid="uid://c1r1lxhv7lomg" path="res://Scenes/main_menu.gd" id="1_s2c3o"]
+[ext_resource type="Script" uid="uid://ds5ysu875j7yo" path="res://Scenes/multijugador.gd" id="3_ma218"]
+[ext_resource type="Script" uid="uid://tp8o6dyhwmpa" path="res://Scenes/salir.gd" id="4_idohh"]
+[ext_resource type="AudioStream" uid="uid://c6kbos445kxjs" path="res://assets/audio/Menu_BackgroundSound.wav" id="5_ma218"]
+[ext_resource type="Script" uid="uid://8jjoxildo81i" path="res://Scenes/contrarreloj.gd" id="5_wfhf6"]
+[ext_resource type="PackedScene" uid="uid://bgwsdlfjpfw73" path="res://Scenes/agLobby.tscn" id="6_3jcrr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3kf3n"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6pedr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_syfuq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_s2c3o"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ma218"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_idohh"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("contrarreloj_btn", "multijugador_btn", "salir_btn")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_s2c3o")
+contrarreloj_btn = NodePath("Contrarreloj")
+multijugador_btn = NodePath("Multijugador")
+salir_btn = NodePath("Salir")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_3kf3n")
+expand_mode = 1
+
+[node name="Multijugador" type="Button" parent="."]
+layout_mode = 0
+offset_left = 896.0
+offset_top = 317.0
+offset_right = 1091.0
+offset_bottom = 367.0
+theme_override_colors/font_hover_color = Color(0.882353, 0.807843, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_3kf3n")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_6pedr")
+text = "Multijugador"
+flat = true
+script = ExtResource("3_ma218")
+
+[node name="Salir" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1018.0
+offset_top = 384.0
+offset_right = 1090.0
+offset_bottom = 434.0
+theme_override_colors/font_hover_color = Color(0.882353, 0.807843, 0, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_syfuq")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_s2c3o")
+text = "Salir"
+flat = true
+script = ExtResource("4_idohh")
+
+[node name="Contrarreloj" type="Button" parent="."]
+layout_mode = 0
+offset_left = 908.0
+offset_top = 257.0
+offset_right = 1093.0
+offset_bottom = 307.0
+theme_override_colors/font_hover_color = Color(0.880593, 0.809441, 7.70092e-07, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/focus = SubResource("StyleBoxEmpty_ma218")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_idohh")
+text = "Contrarreloj"
+flat = true
+script = ExtResource("5_wfhf6")
+target_scene = ExtResource("6_3jcrr")
+
+[node name="BackgroundMusic" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(581, 287)
+stream = ExtResource("5_ma218")

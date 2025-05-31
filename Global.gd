@@ -1,107 +1,132 @@
 extends Node
 
+# Variables de jugadores
 var player_name: String = ""
-var best_time := INF
+var player2_name: String = ""
 
 const SAVE_PATH := "res://archives/save_data.txt"
+const MAX_TIME := 300.0
+const MAX_POLLUTION := 100.0
 
-# Guarda un nuevo tiempo y mantiene solo los 10 mejores
-func save_best_times(new_name: String, new_time: float) -> void:
-	if new_name.strip_edges() == "":
-		push_error("El nombre del jugador está vacío, no se guarda el tiempo.")
+# Guardar datos
+func save_best_times(time1: float, pollution1: float, time2: float = INF, pollution2: float = INF) -> void:
+	# Validar datos jugador 1
+	if player_name.strip_edges() == "" or time1 <= 0 or pollution1 < 0:
+		push_error("Datos inválidos para jugador principal")
 		return
-	if new_time <= 0:
-		push_error("El tiempo no puede ser cero o negativo.")
-		return
+	
+	# Asegurar que existe el directorio
+	if not DirAccess.dir_exists_absolute("res://archives/"):
+		DirAccess.make_dir_absolute("res://archives/")
+	
+	# Cargar y agregar nuevos registros
+	var records = load_best_times()
+	
+	records.append({
+		"name": player_name.strip_edges(),
+		"time": time1,
+		"pollution": pollution1,
+		"score": calculate_score(time1, pollution1)
+	})
+	
+	if player2_name.strip_edges() != "" and time2 > 0 and pollution2 >= 0:
+		records.append({
+			"name": player2_name.strip_edges(),
+			"time": time2,
+			"pollution": pollution2,
+			"score": calculate_score(time2, pollution2)
+		})
+	
+	# Guardar top 10
+	save_records(sort_by_score(records).slice(0, 10))
 
-	var times = load_best_times()
+# Calcular puntuación (0-100)
+func calculate_score(time: float, pollution: float) -> int:
+	var time_ratio = 1.0 - min(time / MAX_TIME, 1.0)
+	var pollution_ratio = 1.0 - min(pollution / MAX_POLLUTION, 1.0)
+	return int(round((pollution_ratio * 60) + (time_ratio * 40)))
 
-	# Añadir el nuevo tiempo
-	times.append({"name": new_name.strip_edges(), "time": new_time})
+# Ordenar por puntuación (mayor primero)
+func sort_by_score(records: Array) -> Array:
+	for i in range(records.size()):
+		for j in range(i + 1, records.size()):
+			if records[i]["score"] < records[j]["score"]:
+				var temp = records[i]
+				records[i] = records[j]
+				records[j] = temp
+	return records
 
-	# Ordenar por tiempo ascendente (mejor tiempo primero) usando función manual
-	times = sort_times_by_time(times)
-
-	# Mantener solo los primeros 10
-	if times.size() > 10:
-		times = times.slice(0, 10)
-
-	# Guardar en archivo
-	save_times_to_file(times)
-
-# Función que ordena el array manualmente (burbuja)
-func sort_times_by_time(times: Array) -> Array:
-	for i in range(times.size()):
-		for j in range(i + 1, times.size()):
-			if times[i]["time"] > times[j]["time"]:
-				var temp = times[i]
-				times[i] = times[j]
-				times[j] = temp
-	return times
-
-# Cargar los mejores tiempos desde archivo
-func load_best_times() -> Array:
-	var result := []
-
-	if not FileAccess.file_exists(SAVE_PATH):
-		return result
-
-	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
-	if file == null:
-		push_error("No se pudo abrir el archivo para leer mejores tiempos.")
-		return result
-
-	# Leer y descartar header
-	if not file.eof_reached():
-		file.get_line()
-
-	while not file.eof_reached():
-		var line = file.get_line().strip_edges()
-		if line == "" or line == "EOF":
-			break
-		var parts = line.split("|")
-		# Formato esperado: pos | username | time (seg)
-		if parts.size() >= 3:
-			var name = parts[1].strip_edges()
-			var time = float(parts[2].strip_edges())
-			if time > 0:
-				result.append({"name": name, "time": time})
-
-	file.close()
-	return result
-
-# Guardar los tiempos ordenados en archivo con header y EOF
-func save_times_to_file(times: Array) -> void:
-	var dir := DirAccess.open("res://")
-	if dir == null:
-		push_error("No se pudo acceder al directorio res://")
-		return
-
-	if not dir.dir_exists("archives"):
-		var err = dir.make_dir("archives")
-		if err != OK:
-			push_error("No se pudo crear el directorio 'archives'. Error: %d" % err)
-			return
-		else:
-			print("Directorio 'archives' creado")
-
+# Guardar registros en archivo (con EOF garantizado)
+func save_records(records: Array) -> void:
 	var file = FileAccess.open(SAVE_PATH, FileAccess.WRITE)
 	if file == null:
-		push_error("No se pudo abrir el archivo para guardar tiempos.")
+		push_error("No se pudo crear el archivo en: " + SAVE_PATH)
 		return
-	else:
-		print("Archivo abierto para escritura correctamente")
-
-	# Escribir header
-	file.store_string("|pos| username | time (seg)|\n")
-
-	# Guardar cada entrada con su posición
-	for i in range(times.size()):
-		var entry = times[i]
-		file.store_string("%d| %s | %.2f\n" % [i + 1, entry["name"], entry["time"]])
-
-	# Línea EOF para marcar el final
-	file.store_string("EOF\n")
-
+	
+	# Escribir cabecera
+	file.store_string("Nombre,Tiempo,Contaminacion,Puntos\n")
+	
+	# Escribir registros
+	for record in records:
+		file.store_string("%s,%.1f,%.1f,%d\n" % [
+			record["name"],
+			record["time"],
+			record["pollution"],
+			record["score"]
+		])
+	
+	# Asegurar EOF al final
+	file.store_string("EOF\n")  # <--- Línea clave añadida
 	file.close()
-	print("Archivo guardado correctamente con %d entradas." % times.size())
+
+# Cargar registros (con soporte para EOF)
+func load_best_times() -> Array:
+	var records = []
+	
+	if not FileAccess.file_exists(SAVE_PATH):
+		return records
+	
+	var file = FileAccess.open(SAVE_PATH, FileAccess.READ)
+	if file == null:
+		return records
+	
+	# Saltar cabecera
+	if not file.eof_reached():
+		file.get_line()
+	
+	while not file.eof_reached():
+		var line = file.get_line().strip_edges()
+		if line == "" or line == "EOF":  # <--- Detección de EOF
+			break
+		
+		var parts = line.split(",")
+		if parts.size() >= 4:
+			records.append({
+				"name": parts[0],
+				"time": float(parts[1]),
+				"pollution": float(parts[2]),
+				"score": int(parts[3])
+			})
+	
+	file.close()
+	return records
+
+# Mostrar tabla
+func print_score_table() -> void:
+	var records = sort_by_score(load_best_times())
+	
+	print("\n=== MEJORES PUNTUACIONES ===")
+	print("Posición  Nombre          Tiempo  Contaminación  Puntos")
+	print("-------------------------------------------------------")
+	
+	for i in range(records.size()):
+		var record = records[i]
+		print("%4d      %-12s   %6.1f      %6.1f      %4d" % [
+			i + 1,
+			record["name"],
+			record["time"],
+			record["pollution"],
+			record["score"]
+		])
+	
+	print("-------------------------------------------------------")
